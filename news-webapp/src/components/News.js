@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Row, Skeleton} from "antd";
+import { Row, Skeleton } from "antd";
 import VerticalNewsCard from "./VerticalNewsCard.js";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsEverything } from "../features/news-slice.js";
@@ -8,7 +8,9 @@ import { fetchNewsEverything } from "../features/news-slice.js";
 function News() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const { articles } = useSelector(state => {return state.news.newsEverything})
+  const news = useSelector((state) => {
+    return state.news.newsEverything;
+  });
 
   const fetchData = async () => {
     try {
@@ -16,14 +18,14 @@ function News() {
       await dispatch(fetchNewsEverything());
       setLoading(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -40,13 +42,23 @@ function News() {
         </h1>
       </div>
       <Row gutter={[16, 16]} style={{ margin: "8px" }}>
-        {!loading? articles && articles.length && articles.map((article, key) => {return <VerticalNewsCard key={key} article={article}/>}) :
-            <>
-              <Skeleton style={{ marginBottom: "32px" }} active />
-              <Skeleton style={{ marginBottom: "32px" }} active />
-              <Skeleton active />
-            </>
-        }
+        {!loading ? (
+          news ? (
+            news.articles &&
+            news.articles.length &&
+            news.articles.map((article, key) => {
+              return <VerticalNewsCard key={key} article={article} />;
+            })
+          ) : (
+            <h1 style={{ margin: "16px" }}>Tidak Ada Data</h1>
+          )
+        ) : (
+          <>
+            <Skeleton style={{ marginBottom: "32px" }} active />
+            <Skeleton style={{ marginBottom: "32px" }} active />
+            <Skeleton active />
+          </>
+        )}
       </Row>
     </>
   );

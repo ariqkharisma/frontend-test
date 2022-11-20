@@ -8,7 +8,7 @@ import HorizontalNewsCard from "./HorizontalNewsCard";
 function HeadlineSection() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const { articles } = useSelector((state) => {
+  const news = useSelector((state) => {
     return state.news.newsHeadline;
   });
 
@@ -31,15 +31,15 @@ function HeadlineSection() {
     <Row>
       <Col lg={{ span: 14 }} span={24}>
         <Carousel autoplay style={{ margin: "16px" }}>
-          {articles &&
-            articles.length &&
-            articles.map((article, key) => {
+          {news ? (
+            news.articles &&
+            news.articles.length &&
+            news.articles.map((article, key) => {
               return (
-                <div>
+                <div key={key}>
                   <img
-                    className="carousel__image"
                     alt="news-item"
-                    src={article.urlToImage}
+                    src={article.urlToImage ? article.urlToImage : "/black.jpg"}
                     style={{
                       height: "560px",
                       color: "#fff",
@@ -50,7 +50,23 @@ function HeadlineSection() {
                   />
                 </div>
               );
-            })}
+            })
+          ) : (
+            <div>
+              <img
+                alt="news-item"
+                src="black.jpg"
+                style={{
+                  height: "560px",
+                  color: "#fff",
+                  lineHeight: "160px",
+                  textAlign: "center",
+                  background: "#364d79",
+                  margin: "16px",
+                }}
+              />
+            </div>
+          )}
         </Carousel>
       </Col>
 
@@ -69,15 +85,19 @@ function HeadlineSection() {
         </div>
 
         {!loading ? (
-          articles &&
-          articles.length &&
-          articles.map((article, key) => {
-            return (
-              <a href={article.url}>
-                <HorizontalNewsCard article={article} key={key} />
-              </a>
-            );
-          })
+          news ? (
+            news.articles &&
+            news.articles.length &&
+            news.articles.map((article, key) => {
+              return (
+                <a key={key} href={article.url}>
+                  <HorizontalNewsCard article={article} key={key} />
+                </a>
+              );
+            })
+          ) : (
+            <h1>Tidak Ada Data</h1>
+          )
         ) : (
           <div>
             <Skeleton style={{ marginBottom: "32px" }} active />

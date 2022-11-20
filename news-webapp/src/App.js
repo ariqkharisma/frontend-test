@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Category from "./pages/Category";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 import './styles/globals.scss'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="sport" element={<Category />} />
           <Route path="education" element={<Category />} />
           <Route path="business" element={<Category />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
