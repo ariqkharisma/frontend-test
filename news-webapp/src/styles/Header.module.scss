@@ -1,0 +1,105 @@
+@import './breakpoints.scss';
+
+
+.navbar {
+    &__brand {
+        width: 100%;
+        color: white;
+        font-size: 28px;
+        height: 100%;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        padding-inline: 16px;
+        overflow-x: hidden;
+        // border: solid black 2px;
+
+        @include media('<=tablet') {
+            position: absolute;
+            left: 16px;
+            font-size: 22px;
+        }
+    }
+
+    &__hamburger {
+        font-size: 22px;
+        color:white;
+        align-items: center;
+        padding-inline: 16px;
+        cursor: pointer;
+        display: none !important;
+        position: absolute;
+        right: 16px;
+        height: 100%;
+        // border: solid black 2px;
+        z-index: 100;
+
+        @include media('<=tablet') {
+            display: flex !important;
+        }
+    }
+
+    &__nav {
+        // border: solid black 2px;
+
+        &.collapse {
+            @include media('<=tablet') {
+                display: none;
+            }
+        }
+
+        .nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // border: solid black 2px;
+
+            &__item {
+                font-size: 16px;
+                color: white;
+                list-style: none;
+                display: flex;
+
+                a {
+                    padding-inline: 16px;
+                    @include media('<=tablet') {
+                        padding-inline: 32px;
+                        width: 100%;
+                    }
+                }
+
+                @include media('<=tablet') {
+                    display: flex;
+                    align-items: center;
+                    height: 44px;
+                    width: 100%;
+                    // border:  solid black 2px;
+                }
+            }
+
+            @include media('<=tablet') {
+                flex-direction: column;
+                position: fixed;
+                right: 0;
+                top: 0;
+                width: 200px;
+                height: 100vh;
+                background-color: #598392;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding-top: 60px;
+                animation: slideIn 0.3s ease;
+
+                @keyframes slideIn {
+                    0% {
+                        right: -200px;
+                    }
+                    100% {
+                        right: 0;
+                    }
+                }
+            }
+        }        
+    }
+}
