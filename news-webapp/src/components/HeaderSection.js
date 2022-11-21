@@ -11,7 +11,7 @@ function HeaderSection() {
     <Layout>
       <Header
         style={{
-          position: "sticky",
+          position: "fixed",
           top: 0,
           zIndex: 1,
           backgroundColor: "#124559",

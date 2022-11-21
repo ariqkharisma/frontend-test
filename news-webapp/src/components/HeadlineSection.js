@@ -37,17 +37,19 @@ function HeadlineSection() {
             news.articles.map((article, key) => {
               return (
                 <div key={key}>
-                  <img
-                    alt="news-item"
-                    src={article.urlToImage ? article.urlToImage : "/black.jpg"}
-                    style={{
-                      height: "560px",
-                      color: "#fff",
-                      lineHeight: "160px",
-                      textAlign: "center",
-                      background: "#364d79",
-                    }}
-                  />
+                  <a href={article.url}>
+                    <img
+                      alt="news-item"
+                      src={article.urlToImage ? article.urlToImage : "/black.jpg"}
+                      style={{
+                        height: "560px",
+                        color: "#fff",
+                        lineHeight: "160px",
+                        textAlign: "center",
+                        background: "#364d79",
+                      }}
+                    />
+                  </a>
                 </div>
               );
             })

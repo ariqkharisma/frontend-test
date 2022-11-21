@@ -5,12 +5,14 @@ import HeadlineSection from "../components/HeadlineSection";
 import News from "../components/News";
 
 function Home() {
-
   return (
     <Fragment>
       <HeaderSection />
-      <section id="main" style={{ minHeight: "calc(100vh - 131px)" }}>
-        <HeadlineSection/>
+      <section
+        id="main"
+        style={{ minHeight: "calc(100vh - 131px)", marginTop: "65px" }}
+      >
+        <HeadlineSection />
         <News />
       </section>
       <FooterSection />
